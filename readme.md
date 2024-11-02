@@ -1,7 +1,8 @@
 
 ![alt text](snapshots/default.png)
-![alt text](snapshots/image.png)
+![alt text](snapshots/capture.png)
 ![alt text](snapshots/session.png)
+![alt text](snapshots/log.png)
 
 
 # Smart Face Tracker Pro
