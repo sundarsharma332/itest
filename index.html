@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Face Tracker Pro</title>
+    <!-- Libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@3.11.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/blazeface@0.0.7"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/coco-ssd"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style/style.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Smart Face Tracker Pro</h1>
+            <p>Advanced Real-time Face Detection & Analysis</p>
+        </div>
+
+        <div class="main-content">
+            <div class="video-container">
+                <div class="video-wrapper">
+                    <video id="video" autoplay playsinline></video>
+                    <canvas id="canvas"></canvas>
+                    <div id="alertOverlay" class="alert-overlay"></div>
+                    <div class="target-zone"></div>
+                </div>
+                <div class="status-indicator">
+                    <div id="statusDot" class="status-dot"></div>
+                    <span id="status">Initializing system...</span>
+                </div>
+            </div>
+
+            <div class="metrics-panel">
+                <div class="session-controls">
+                    <button id="startSession" class="btn btn-primary">Start Session</button>
+                    <button id="endSession" class="btn btn-danger">End Session</button>
+                    <button id="exportLog" class="btn btn-primary">Export Log</button>
+                </div>
+
+                <div class="metrics-grid">
+                    <div class="mini-metric">
+                        <h4>SESSION TIME</h4>
+                        <div id="sessionTime" class="value">00:00</div>
+                    </div>
+                    <div class="mini-metric">
+                        <h4>OBJECTS</h4>
+                        <div id="objectCount" class="value">0</div>
+                    </div>
+                    <div class="mini-metric">
+                        <h4>POSITION</h4>
+                        <div id="headPosition" class="value">Waiting...</div>
+                    </div>
+                    <div class="mini-metric">
+                        <h4>FACES</h4>
+                        <div id="faceCount" class="value">0</div>
+                    </div>
+                </div>
+
+                <div class="metric-card">
+                    <h3>FACE POSITION SCORE</h3>
+                    <div id="scoreValue" class="metric-value">0</div>
+                    <div class="quality-bar">
+                        <div id="qualityFill" class="quality-fill" style="width: 0%"></div>
+                    </div>
+                </div>
+
+                <div class="metric-card">
+                    <h3>SESSION STATISTICS</h3>
+                    <div class="stats-grid">
+                        <div class="stat-item">
+                            <label>Avg Score</label>
+                            <span id="statsAvgScore">0.0</span>
+                        </div>
+                        <div class="stat-item">
+                            <label>Max Score</label>
+                            <span id="statsMaxScore">0.0</span>
+                        </div>
+                        <div class="stat-item">
+                            <label>Min Score</label>
+                            <span id="statsMinScore">0.0</span>
+                        </div>
+                        <div class="stat-item">
+                            <label>Center Time</label>
+                            <span id="statsCenterPercentage">0%</span>
+                        </div>
+                        <div class="stat-item">
+                            <label>Warnings</label>
+                            <span id="statsWarnings">0</span>
+                        </div>
+                        <div class="stat-item">
+                            <label>Errors</label>
+                            <span id="statsErrors">0</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="chart-container">
+                    <canvas id="scoreChart"></canvas>
+                </div>
+
+                <div id="sessionLog" class="session-log">
+                    <!-- Log entries will be added here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Load modules at the end of body -->
+    <script type="module">
+        // Import and initialize app
+        import { FaceTrackingApp } from './js/main.js';
+        window.addEventListener('load', () => {
+            window.app = new FaceTrackingApp();
+            window.app.initialize();
+        });
+    </script>
+</body>
+
+</html>

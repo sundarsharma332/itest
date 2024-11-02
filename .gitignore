@@ -1,0 +1,26 @@
+# Editor directories and files
+.vscode/
+.history/
+*.code-workspace
+
+# IDE - Visual Studio
+.vs/
+.vscode-test/
+
+# System files
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Optional: Dependencies if you add them later
+node_modules/
+dist/
+build/
